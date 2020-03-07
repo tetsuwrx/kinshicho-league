@@ -1,0 +1,76 @@
+{% extends "memberlistlayout.html" %}
+{% block content %}
+<table name="memberlist" class="bordered">
+  <thead>
+    <tr>
+      <th>メンバーNo</th>
+      <th>登録日</th>
+      <th>なまえ</th>
+      <th>クラス</th>
+      <th>勝ラック数</th>
+      <th>性別</th>
+      <th>編集</th>
+    </tr>
+  </thead>
+  {% if memberlist|length > 0 %}
+  {% set i = 1 %}
+  {% for member in memberlist %}
+  <tbody>
+    <tr>
+      <td><label id="no_{{ i }}">{{ member.memberno }}</label></td>
+      <td>{{ member.registdate }}</td>
+      <td><input type="text" id="name_{{ i }}" value="{{ member.name }}"></td>
+      <td>
+        <select name="class" id="class_{{ i }}" onchange="setClass(this, {{ i }});">
+          {% if member.class == 'UC' %}
+            <option value="UC" selected><p name="memberclass">UC</p></option>
+          {% else %}
+            <option value="UC"><p name="memberclass">UC</p></option>
+          {% endif %}
+          {% if member.class == 'C' %}
+            <option value="C" selected><p name="memberclass">C</p></option>
+          {% else %}
+            <option value="C"><p name="memberclass">C</p></option>
+          {% endif %}
+          {% if member.class == 'B' %}
+            <option value="B" selected><p name="memberclass">B</p></option>
+          {% else %}
+            <option value="B"><p name="memberclass">B</p></option>
+          {% endif %}
+          {% if member.class == 'A' %}
+            <option value="A" selected><p name="memberclass">A</p></option>
+          {% else %}
+            <option value="A"><p name="memberclass">A</p></option>
+          {% endif %}
+          {% if member.class == 'SA' %}
+            <option value="SA" selected><p name="memberclass">SA</p></option>
+          {% else %}
+            <option value="SA"><p name="memberclass">SA</p></option>
+          {% endif %}
+      </td>
+      <td><label id="score_{{ i }}">{{ member.score }}</label></td>
+      <td>
+      <select id="sex_{{ i }}">
+        {% if  member.sex == '男' %}
+          <option value="男" selected><p>男</p></option>
+        {% else %}
+          <option value="男"><p>男</p></option>
+        {% endif %}
+        {% if  member.sex == '女' %}
+          <option value="女" selected><p>女</p></option>
+        {% else %}
+          <option value="女"><p>女</p></option>
+        {% endif %}
+      </select>
+      </td>
+      <td><input type="button" value="更新" onclick="updateMember('{{ i }}');"></td>
+    </tr>
+  </tbody>
+  {% set i = i + 1 %}
+  {% endfor %}
+  {% endif %}
+</table>
+<p>
+  <a class="gotoMenu" href="/maintenance">メニューへ</a>
+</p>
+{% endblock %}

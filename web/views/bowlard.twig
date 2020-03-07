@@ -1,0 +1,81 @@
+{% extends "bowlardlayout.html" %}
+
+{% block content %}
+<form name="entryForm" method="POST" target="_self" action="bowlard.php">
+<table class="sheet">
+<thead>
+  <tr>
+    <th colspan="2">1</th>
+    <th colspan="2">2</th>
+    <th colspan="2">3</th>
+    <th colspan="2">4</th>
+    <th colspan="2">5</th>
+    <th colspan="2">6</th>
+    <th colspan="2">7</th>
+    <th colspan="2">8</th>
+    <th colspan="2">9</th>
+    <th colspan="3">10</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td id="td1-1"><label id="frame1-1"></label></td>
+    <td id="td1-2"><label id="frame1-2"></label></td>
+    <td id="td2-1"><label id="frame2-1"></label></td>
+    <td id="td2-2"><label id="frame2-2"></label></td>
+    <td id="td3-1"><label id="frame3-1"></label></td>
+    <td id="td3-2"><label id="frame3-2"></label></td>
+    <td id="td4-1"><label id="frame4-1"></label></td>
+    <td id="td4-2"><label id="frame4-2"></label></td>
+    <td id="td5-1"><label id="frame5-1"></label></td>
+    <td id="td5-2"><label id="frame5-2"></label></td>
+    <td id="td6-1"><label id="frame6-1"></label></td>
+    <td id="td6-2"><label id="frame6-2"></label></td>
+    <td id="td7-1"><label id="frame7-1"></label></td>
+    <td id="td7-2"><label id="frame7-2"></label></td>
+    <td id="td8-1"><label id="frame8-1"></label></td>
+    <td id="td8-2"><label id="frame8-2"></label></td>
+    <td id="td9-1"><label id="frame9-1"></label></td>
+    <td id="td9-2"><label id="frame9-2"></label></td>
+    <td id="td10-1"><label id="frame10-1"></label></td>
+    <td id="td10-2"><label id="frame10-2"></label></td>
+    <td id="td10-3"><label id="frame10-3"></label></td>
+  </tr>
+  <tr>
+    <td colspan="2"><label id="frame1"></label></td>
+    <td colspan="2"><label id="frame2"></label></td>
+    <td colspan="2"><label id="frame3"></label></td>
+    <td colspan="2"><label id="frame4"></label></td>
+    <td colspan="2"><label id="frame5"></label></td>
+    <td colspan="2"><label id="frame6"></label></td>
+    <td colspan="2"><label id="frame7"></label></td>
+    <td colspan="2"><label id="frame8"></label></td>
+    <td colspan="2"><label id="frame9"></label></td>
+    <td colspan="3"><label id="frame10"></label></td>
+  </tr>
+</tbody>
+</table>
+<table class="score">
+  <tr>
+    <td><input type="button" id="btnS" class="btn" value="S" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btn9" class="btn" value="9" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btn8" class="btn" value="8" onclick="scoreInput(this);"></td>
+  </tr>
+  <tr>
+    <td><input type="button" id="btn7" class="btn" value="7" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btn6" class="btn" value="6" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btn5" class="btn" value="5" onclick="scoreInput(this);"></td>
+  </tr>
+  <tr>
+    <td><input type="button" id="btn4" class="btn" value="4" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btn3" class="btn" value="3" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btn2" class="btn" value="2" onclick="scoreInput(this);"></td>
+  </tr>
+  <tr>
+    <td><input type="button" id="btn1" class="btn" value="1" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btnG" class="btn" value="G" onclick="scoreInput(this);"></td>
+    <td><input type="button" id="btnBack" class="btn" value="←"></td>
+  </tr>
+</table>
+</form>
+{% endblock %}

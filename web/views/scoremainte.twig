@@ -1,0 +1,113 @@
+{% extends "scoremaintelayout.html" %}
+{% block content %}
+<div class="main">
+  <div class="conditionForm">
+    <input type="date" id="dateFrom" class="dateForm" value="{{ dateFrom }}">
+  </div>
+  <div class="conditionForm">
+    <input type="date" id="dateTo" class="dateForm" value="{{ dateTo }}">
+  </div>
+  <div class="conditionForm">
+    <input type="submit" name="searchSubmit" class="searchSubmit" value="検索" onclick="searchScore();">
+  </div>
+</div>
+<table id="scorelist" class="scorelistTable">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>対戦日</th>
+      <th>なまえ1</th>
+      <th>クラス1</th>
+      <th>スコア1</th>
+      <th>マスワリ1</th>
+      <th>なまえ2</th>
+      <th>クラス2</th>
+      <th>スコア2</th>
+      <th>マスワリ2</th>
+      <th>編集</th>
+    </tr>
+  </thead>
+  {% if memberlist|length > 0 %}
+  {% set i = 1 %}
+  {% for score in scorelist %}
+  <tbody>
+    <tr>
+      <td>{{ score.matchno }}</td>
+      <td>
+        <input class="entryDate" id="matchdate_{{ i }}" type="date" value="{{ score.matchdate }}">
+      </td>
+      <td>
+        <select class="pName" id="player1name_{{ i }}" onchange="setClass(this, 'class1_{{ i }}', 'p1Masu_{{ i }}')">
+        <option value="0" disabled="">--</option>
+        {% set p1class = "" %}
+        {% for member in memberlist %}
+          {% if score.player1name == member.name %}
+          <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}" selected="selected">{{ member.name }}</option>
+          {% set p1class = member.class %}
+          {% else %}
+          <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}" >{{ member.name }}</option>
+          {% endif %}
+        {% endfor %}
+        </select>
+      </td>
+      <td>
+        <input class="pClass" id="class1_{{ i }}" type="text" value="{{ p1class }}" readonly="readonly">
+      </td>
+      <td>
+        <input class="pScore" id="score1_{{ i }}" type="number" value="{{ score.player1score }}">
+      </td>
+      <td>
+        <select class="p1Masu" id="p1Masu_{{ i }}">
+        {% for j in 0..7 %}
+          {% if j== score.player1runout %}
+          <option value="{{ j }}" selected="selected"><p class="masu">◎-{{ j }}</p></option>
+          {% else %}
+          <option value="{{ j }}"><p class="masu">◎-{{ j }}</p></option>
+          {% endif %}
+        {% endfor %}
+        </select>
+      </td>
+      <td>
+        <select class="pName" id="player2name_{{ i }}" onchange="setClass(this, 'class2_{{ i }}', 'p2Masu_{{ i }}')">
+        <option value="0" disabled="">--</option>
+        {% set p2class = "" %}
+        {% for member in memberlist %}
+          {% if score.player2name == member.name %}
+          {% set p2class = member.class %}
+          <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}" selected="selected">{{ member.name }}</option>
+          {% else %}
+          <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}" >{{ member.name }}</option>
+          {% endif %}
+        {% endfor %}
+        </select>
+      </td>
+      <td>
+        <input class="pClass" id="class2_{{ i }}" type="text" value="{{ p2class }}" readonly="readonly">
+      </td>
+      <td>
+        <input class="pScore" id="score2_{{ i }}" type="number" value="{{ score.player2score }}" >
+      </td>
+      <td>
+        <select class="p1Masu" id="p2Masu_{{ i }}">
+          {% for j in 0..7 %}
+            {% if j== score.player2runout %}
+            <option value="{{ j }}" selected="selected"><p class="masu">◎-{{ j }}</p></option>
+            {% else %}
+            <option value="{{ j }}"><p class="masu">◎-{{ j }}</p></option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </td>
+      <td>
+        <input type="button" name="editBtn" value="更新" onclick="updateMatchScore('{{ score.matchno }}', '{{ i }}');">
+      </td>
+    </tr>
+  </tbody>
+  {% set i = i + 1 %}
+  {% endfor %}
+  {% endif %}
+</table>
+<p>
+  <a class="gotoMenu" href="/maintenance">メニューへ</a>
+</p>
+{% endblock %}

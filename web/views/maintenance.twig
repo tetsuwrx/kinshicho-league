@@ -1,0 +1,57 @@
+{% extends "maintenancelayout.html" %}
+
+{% block content %}
+<div class="mainttl">
+  <div class="mainbase">メインメニュー(店員専用)</div>
+  <div class="mains" style="background:linear-gradient(270deg, rgb(255, 255, 0), rgb(255, 255, 100));">
+    <div class="main">
+      <a class="mainsubmit" href="regist">メンバー登録</a>
+    </div>
+    <div class="mainball" style="background:linear-gradient(160deg, rgb(255, 255, 0), rgb(150, 150, 50));">
+      <div class="ballNumber">1</div>
+    </div>
+  </div>
+  <div class="mains" style="background:linear-gradient(270deg, rgb(0, 100, 255), rgb(100, 200, 255));">
+    <div class="main">
+      <a class="mainsubmit" href="memberlist">メンバー修正</a>
+    </div>
+    <div class="mainball" style="background:linear-gradient(160deg, rgb(0, 100, 255), rgb(0, 0, 150));">
+      <div class="ballNumber">2</div>
+    </div>
+  </div>
+  <div class="mains" style="background:linear-gradient(270deg, rgb(255, 0, 0), rgb(250, 100, 100));">
+    <div class="main">
+      <a class="mainsubmit" href="ranking2">リーグ戦ランキング</a>
+    </div>
+    <div class="mainball" style="background:linear-gradient(160deg, rgb(255, 0, 0), rgb(150, 0, 0));">
+      <div class="ballNumber">3</div>
+    </div>
+  </div>
+  <div class="mains" style="background:linear-gradient(270deg, rgb(255, 0, 234), rgb(250, 100, 234));">
+    <div class="main">
+      <!-- <a class="mainsubmit" href="score">リーグ戦結果入力</a> -->
+      <a class="mainsubmit" href="scorelist2">対戦結果分析</a>
+    </div>
+    <div class="mainball" style="background:linear-gradient(160deg, rgb(255, 0, 234), rgb(100, 0, 134));">
+      <div class="ballNumber">4</div>
+    </div>
+  </div>
+  <div class="mains" style="background:linear-gradient(270deg, rgb(255, 150, 0), rgb(255, 150, 100));">
+    <div class="main">
+      <a class="mainsubmit" href="scoreregist">リーグ戦結果一括入力</a>
+    </div>
+    <div class="mainball" style="background:linear-gradient(160deg, rgb(255, 150, 0), rgb(150, 100, 0));">
+      <div class="ballNumber">5</div>
+    </div>
+  </div>
+  <div class="mains" style="background:linear-gradient(270deg, rgb(0, 255, 0), rgb(100, 255, 100));">
+    <div class="main">
+      <a class="mainsubmit" href="scoremainte">リーグ戦結果修正</a>
+    </div>
+    <div class="mainball" style="background:linear-gradient(160deg, rgb(0, 255, 0), rgb(0, 150, 0));">
+      <div class="ballNumber">6</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

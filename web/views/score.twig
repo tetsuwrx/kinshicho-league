@@ -1,0 +1,112 @@
+{% extends "scorelayout.html" %}
+{% block content %}
+<form name="entryForm" method="POST" target="_self" action="score.php">
+  <div class="menu">リーグ戦結果入力</div>
+  <div class="title">
+    <div class="entryDate">
+      <input class="entryDate" name="entryDate" type="date" value="{{ entryDate }}">
+    </div>
+    <div class="scoreMain">
+      <div class="matchResult">
+        <div class="p1Name">
+          <label for="p1Refine">絞り込み：</label>
+          <input class="p1Refine" name="p1Refine" type="text" value="" onchange="refineMember(this, document.entryForm.p1Name, document.entryForm.p1NameAll)">
+        </div>
+        <div class="p1Name">
+          <label for="p1Name">なまえ：</label>
+          <select class="p1Name" name="p1Name" onchange="setClass(this, document.entryForm.p1Class, document.entryForm.p1ScoreWin, document.entryForm.p1Masu)">
+              <option value="0">▼ -- 選択 -- ▼</option>
+            {% for member in memberlist %}
+              <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}">{{ member.name }}</option>
+            {% endfor %}
+          </select>
+          <select name="p1NameAll" style="display:none;">
+              <option value="0">▼ -- 選択 -- ▼</option>
+            {% for member in memberlist %}
+              <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}">{{ member.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="p1Class">
+          <label for="p1Class">クラス：</label>
+          <input class="p1Class" name="p1Class" type="text" value="" readonly="readonly">
+        </div>
+        <div class="p1Score">
+          <label for="p1Score">スコア：</label>
+          <input class="p1Score" name="p1Score" type="number" value="" onchange="scoreInput('p1')">
+          <input type="hidden" name="p1ScoreWin" value="">
+        </div>
+        <div class="p1Masu">
+          <label for="p1Masu">マスワリ：</label>
+          <select class="p1Masu" name="p1Masu">
+            <option value="0"><p class="a1masu">◎-0</p></option>
+            <option value="1"><p class="a1masu">◎-1</p></option>
+            <option value="2"><p class="a1masu">◎-2</p></option>
+            <option value="3"><p class="a1masu">◎-3</p></option>
+            <option value="4"><p class="a1masu">◎-4</p></option>
+            <option value="5"><p class="a1masu">◎-5</p></option>
+            <option value="6"><p class="a1masu">◎-6</p></option>
+            <option value="7"><p class="a1masu">◎-7</p></option>
+          </select>
+        </div>
+        <div class="p1Winner" id="p1WinnerLabel" style="display:none;">WINNER</div>
+        <input type="hidden" name="p1WinnerFlag" value="">
+      </div>
+      <div class="p1Center">
+        <div class="p1VS"><p class="p1VS">VS</p></div>
+      </div>
+      <div class="matchResult">
+        <div class="p1Name">
+          <label for="p2Refine">絞り込み：</label>
+          <input class="p1Refine" name="p2Refine" type="text" value="" onchange="refineMember(this, document.entryForm.p2Name, document.entryForm.p2NameAll)">
+        </div>
+        <div class="p1Name">
+          <label for="p2Name">なまえ：</label>
+          <select class="p1Name" name="p2Name" onchange="setClass(this, document.entryForm.p2Class, document.entryForm.p2ScoreWin, document.entryForm.p2Masu)">
+              <option value="0">▼ -- 選択 -- ▼</option>
+            {% for member in memberlist %}
+              <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}">{{ member.name }}</option>
+            {% endfor %}
+          </select>
+          <select name="p2NameAll" style="display:none;">
+              <option value="0">▼ -- 選択 -- ▼</option>
+            {% for member in memberlist %}
+              <option value="{{ member.memberno }},{{ member.name }},{{ member.class }},{{ member.score }}">{{ member.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="p1Class">
+          <label for="p2Class">クラス：</label>
+          <input class="p1Class" name="p2Class" type="text" value="" readonly="readonly">
+        </div>
+        <div class="p1Score">
+          <label for="p2Score">スコア：</label>
+          <input class="p1Score" name="p2Score" type="number" value="" onchange="scoreInput('p2')">
+          <input type="hidden" name="p2ScoreWin" value="">
+        </div>
+        <div class="p1Masu">
+          <label for="p2Masu">マスワリ：</label>
+          <select class="p1Masu" name="p2Masu">
+            <option value="0"><p class="a1masu">◎-0</p></option>
+            <option value="1"><p class="a1masu">◎-1</p></option>
+            <option value="2"><p class="a1masu">◎-2</p></option>
+            <option value="3"><p class="a1masu">◎-3</p></option>
+            <option value="4"><p class="a1masu">◎-4</p></option>
+            <option value="5"><p class="a1masu">◎-5</p></option>
+            <option value="6"><p class="a1masu">◎-6</p></option>
+            <option value="7"><p class="a1masu">◎-7</p></option>
+          </select>
+        </div>
+        <div class="p1Winner" id="p2WinnerLabel" style="display:none;">WINNER</div>
+        <input type="hidden" name="p2WinnerFlag" value="">
+      </div>
+    </div>
+    <div class="a1btns">
+      <input class="a1btns" type="submit" name="a1submit" value="結　果　登　録" onclick="a1datacheck()">
+    </div>
+    <div class="a1btns">
+      <a class="gotoMenu" href="/">メニューへ戻る</a>
+    </div>
+  </div>
+</form>
+{% endblock %}
